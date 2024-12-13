@@ -8,7 +8,7 @@ const isAuthenticated = async (req, res, next) => {
   }
  
   try {
-    const tokenInfo = jwt.verify(token, process.env.SECRET);
+    const tokenInfo = jwt.verify(token, process.env.JWT_SECRET_KEY);
     req.user = tokenInfo;
     next();
   } catch (error) {
