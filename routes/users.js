@@ -130,11 +130,12 @@ router.post('/login', async (req, res) => {
         res.status(401).json({ message: "Incorrect username or password" });
       }
     })
-    .catch((err) => res.status(500).json({ message: "Incorrect username or password" }));
+    .catch((err) => res.status(500).json({ err, message: "Incorrect username or password" }));
 })
 
 router.get("/verify", isAuthenticated, (req, res, next) => {
-  res.status(201).json(req.user);
+  const { user } = req
+  res.status(201).json(user);
 });
 
 module.exports = router;
